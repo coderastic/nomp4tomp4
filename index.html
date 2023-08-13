@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video URL Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #outputURL {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <input type="url" id="videoURL" placeholder="Enter video URL">
+    <button onclick="convertURL()">Convert</button>
+    <p id="outputURL"></p>
+
+    <script>
+        function convertURL() {
+            const videoURL = document.getElementById('videoURL').value;
+            const convertedURL = videoURL + ".MP4";
+            document.getElementById('outputURL').innerText = convertedURL;
+
+            // TODO: Integrate with Back4App to save the original and converted URLs
+        }
+    </script>
+</body>
+</html>
