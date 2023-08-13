@@ -22,12 +22,33 @@
     <p id="outputURL"></p>
 
     <script>
+        const APP_ID = 'JGzXQUWo9OCBeWcYw6NUAkBWav6Da9EFzTRQBwW2';
+        const API_URL = 'https://parseapi.back4app.com/classes/VideoURLs';
+
         function convertURL() {
             const videoURL = document.getElementById('videoURL').value;
             const convertedURL = videoURL + ".MP4";
             document.getElementById('outputURL').innerText = convertedURL;
 
-            // TODO: Integrate with Back4App to save the original and converted URLs
+            // Save to Back4App
+            fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'X-Parse-Application-Id': APP_ID,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    inputURL: videoURL,
+                    outputURL: convertedURL
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Data saved:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
     </script>
 </body>
